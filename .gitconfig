@@ -1,0 +1,56 @@
+[user]
+    name = Shingo OKAWA
+    email = shingo.okawa.g.h.c@gmail.com
+
+[core]
+    editor = vi
+    ignorecase = false
+    excludesfile = ~/.gitignore_global
+    autocrlf = input
+
+[credential]
+    helper = osxkeychain
+
+[commit]
+    template = ~/.gitmessage
+
+[alias]
+    aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /' | sort
+    cb = !git branch | grep ^* | cut -d' ' -f2
+    st = status
+    ci = commit
+    cie = commit --allow-empty-message -m ''
+    co = checkout
+    br = branch
+    df = diff -C --color-words
+    pl = !git pull --rebase origin $(git cb)
+    ps = !git push origin $(git cb)
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --all
+    cl = clone
+    clr = clone --recursive
+    ri = rebase --interactive --autosquash --preserve-merges
+    ig = !curl -L -s https://www.gitignore.io/api/${@}
+    who = shortlog -s --
+    save = stash save -u
+    prune-loc = !git branch --merged | grep -v master | grep -v dev | xargs -n 1 git branch -d
+    prune-all = !git remote | xargs -n 1 git remote prune
+    find-log = !sh -c 'git lg --grep="'${@}'"'
+    find-src = !sh -c 'git grep "'${@}'" $(git rev-list --all)'
+    fixup = !sh -c 'git commit --fixup=${1}' -
+    squash = !sh -c 'git commit --squash=${1}' -
+    submodule-list = !git ls-files --stage | grep 16000
+
+[http]
+    postBuffer = 524288000
+    version = HTTP/2
+
+[secrets]
+    providers = git secrets --aws-provider
+    patterns = (A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}
+    patterns = (\"|')?(AWS|aws|Aws)?_?(SECRET|secret|Secret)?_?(ACCESS|access|Access)?_?(KEY|key|Key)(\"|')?\\s*(:|=>|=)\\s*(\"|')?[A-Za-z0-9/\\+=]{40}(\"|')?
+    patterns = (\"|')?(AWS|aws|Aws)?_?(ACCOUNT|account|Account)_?(ID|id|Id)?(\"|')?\\s*(:|=>|=)\\s*(\"|')?[0-9]{4}\\-?[0-9]{4}\\-?[0-9]{4}(\"|')?
+    allowed = AKIAIOSFODNN7EXAMPLE
+    allowed = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+
+[init]
+    templatedir = ~/.git-templates/secrets
