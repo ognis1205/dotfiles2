@@ -33,7 +33,7 @@ has_whitelist() {
 
   while read -ra LINE; do
     entry="${LINE[0]}"
-    if [ "$hook" == "$entry" ]; then
+    if [ "${hook}" == "$entry" ]; then
       WHITELIST="${LINE[1]}"
       return 0
     fi
