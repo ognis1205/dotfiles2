@@ -95,3 +95,8 @@ Temporary Items
 
 
 # End of https://www.gitignore.io/api/emacs,macos
+
+
+### dotfiles ###
+.git_template/hooks/whitelists.d/
+!.git_template/hooks/whitelists.d/.gitkeep
