@@ -99,4 +99,3 @@ Temporary Items
 
 ### dotfiles ###
 .git_template/hooks/whitelists.d/
-!.git_template/hooks/whitelists.d/.gitkeep
