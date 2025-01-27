@@ -28,3 +28,9 @@ else
     info "tfenv has not been installed. Start installing it here...\n"
     brew install tfenv
 fi
+if command -v docker 1>/dev/null 2>&1 ; then
+    info "docker is already installed...\n"
+else
+    info "docker has not been installed. Start installing it here...\n"
+    brew install --cask docker
+fi
