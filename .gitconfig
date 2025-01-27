@@ -55,4 +55,4 @@
     patterns = private_key_id
 
 [init]
-    templatedir = ~/.git-templates/secrets
+    templatedir = ~/.git-templates/git-secrets
