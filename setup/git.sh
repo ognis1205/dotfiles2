@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-info() {
-    printf "\e[32m[INFO]\e[0m ${*}"
-}
+. "$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)/setup_utils.sh"
 
 if [[ $(git secrets 2>/dev/null) = "usage"* ]] ; then
     info "git-secrets is already installed...\n"

@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-info() {
-    printf "\e[32m[INFO]\e[0m ${*}"
-}
+. "$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)/setup_utils.sh"
 
 if command -v asdf 1>/dev/null 2>&1 ; then
     info "asdf is already installed...\n"
