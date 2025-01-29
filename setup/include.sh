@@ -4,11 +4,11 @@ info() {
 
 if_yes_then() {
     while true; do
-        info "${1}" ; read -p " (y/n): " yn
+        echo -n "${1}" ; read -p " (y/n): " yn
         case "${yn}" in
-            [Yy]*) info "Yes\n" ; eval "${@/${1}}" ; break ;;
-            [Nn]*) info  "No\n" ; break ;;
-            *)     info "Please enter a valid parameter (y/n).\n" ;;
+            [Yy]*) echo "Yes" ; eval "${@/${1}}" ; break ;;
+            [Nn]*) echo  "No" ; break ;;
+            *)     echo "Please enter a valid parameter (y/n)." ;;
         esac
     done
 }
