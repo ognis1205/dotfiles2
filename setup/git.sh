@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-. "$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)/setup_utils.sh"
+. "$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)/include.sh"
 
 install() {
     if [[ $(git secrets 2>/dev/null) = "usage"* ]] ; then
