@@ -37,6 +37,13 @@ install() {
 	info "docker has not been installed. Start installing it here...\n"
 	brew install --cask docker
     fi
+
+    if command -v tree 1>/dev/null 2>&1 ; then
+	info "tree is already installed...\n"
+    else
+	info "tree has not been installed. Start installing it here...\n"
+	brew install tree
+    fi
 }
 
 if_yes_then\
