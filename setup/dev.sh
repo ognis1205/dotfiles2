@@ -9,6 +9,13 @@ install() {
 	info "just has not been installed. Start installing it here...\n"
 	brew install just
     fi
+
+    if command -v gh 1>/dev/null 2>&1 ; then
+	info "gh is already installed...\n"
+    else
+	info "gh has not been installed. Start installing it here...\n"
+	brew install gh
+    fi
 }
 
 if_yes_then\
