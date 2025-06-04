@@ -23,6 +23,13 @@ install() {
 	info "hacth has not been installed. Start installing it here...\n"
 	brew install hatch
     fi
+
+    if command -v protoc 1>/dev/null 2>&1 ; then
+	info "protoc is already installed...\n"
+    else
+	info "protoc has not been installed. Start installing it here...\n"
+	brew install protobuf
+    fi
 }
 
 if_yes_then\
