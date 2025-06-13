@@ -1,1 +1,2 @@
+# Enable integration with macOS-native JAVA_HOME via /usr/libexec/java_home
 java_macos_integration_enable = yes
