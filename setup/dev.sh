@@ -20,7 +20,7 @@ install() {
     if command -v hatch 1>/dev/null 2>&1 ; then
 	info "hatch is already installed...\n"
     else
-	info "hacth has not been installed. Start installing it here...\n"
+	info "hatch has not been installed. Start installing it here...\n"
 	brew install hatch
     fi
 
