@@ -13,11 +13,11 @@ __power() {
     case "$(uname 2>/dev/null)" in
         Darwin*)
             ok=true
-            [[ $(pmset -g ac) != *"No adapter attached."* ]] && col="green"
+            [[ $(pmset -g ac) != *"No adapter attached."* ]] && col="magenta"
             ;;
         Linux*)
             ok=true
-            acpi -a 2>/dev/null | grep -q "on-line" && col="green"
+            acpi -a 2>/dev/null | grep -q "on-line" && col="magenta"
             ;;
     esac
     ${ok} || { col="red"; sym="${alt}"; }
@@ -30,14 +30,14 @@ __wifi() {
     case "$(uname 2>/dev/null)" in
         Darwin*)
             ok=true
-            networksetup -getairportpower en0 | grep -q "On" && col="green"
+            networksetup -getairportpower en0 | grep -q "On" && col="magenta"
             ;;
         Linux*)
             ok=true
             if command -v nmcli &>/dev/null; then
-                nmcli -t -f active,ssid dev wifi 2>/dev/null | grep -q '^yes:' && col="green"
+                nmcli -t -f active,ssid dev wifi 2>/dev/null | grep -q '^yes:' && col="magenta"
             elif command -v iwgetid &>/dev/null; then
-                [[ -n $(iwgetid -r) ]] && col="green"
+                [[ -n $(iwgetid -r) ]] && col="magenta"
             fi
             ;;
     esac
