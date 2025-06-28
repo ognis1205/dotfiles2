@@ -90,6 +90,17 @@ __venv() {
     fi
 }
 
+# Renders the primary shell prompt (PS1)
+__render_prompt() {
+    PROMPT="[$(__power) $(__wifi) $(__battery) %n@%m$(__venv)] %~"$'\n'"%(#.#.$) "
+}
+
+# Renders the right-hand side prompt (RPROMPT)
+__render_rprompt() {
+    LANG=en_US.UTF-8 vcs_info
+    RPROMPT="${vcs_info_msg_0_}"
+}
+
 # Use 'pure' prompt if available, otherwise fallback to basic VCS-aware prompt
 if [ -d "${HOME}/.zsh/pure" ] ; then
     fpath+="${HOME}/.zsh/pure"
@@ -103,13 +114,6 @@ else
     PROMPT="[$(__power) $(__wifi) $(__battery) %n@%m$(__venv)] %~"$'\n'"%(#.#.$) "
     zstyle ':vcs_info:*' formats '%F{green}(%s)-[%b]%f'
     zstyle ':vcs_info:*' actionformats '%F{red}(%s)-[%b|%a]%f'
-    function __render_prompt() {
-        PROMPT="[$(__power) $(__wifi) $(__battery) %n@%m$(__venv)] %~"$'\n'"%(#.#.$) "
-    }
-    function __render_rprompt() {
-        LANG=en_US.UTF-8 vcs_info
-        RPROMPT="${vcs_info_msg_0_}"
-    }
     add-zsh-hook precmd __render_prompt
     add-zsh-hook precmd __render_rprompt
 fi
@@ -146,19 +150,19 @@ fpath[1,0]="/opt/homebrew/share/zsh/site-functions" # Add Homebrew site-function
 # ────────────────────────────────
 
 __path=(
-  /opt/homebrew/bin
-  /opt/homebrew/sbin
-  ${HOME}/.local/bin
-  /usr/local/bin
-  /usr/local/sbin
-  /usr/bin
-  /bin
-  /usr/sbin
-  /sbin
-  /System/Cryptexes/App/usr/bin
-  /var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin
-  /var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin
-  /var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin
+    /opt/homebrew/bin
+    /opt/homebrew/sbin
+    ${HOME}/.local/bin
+    /usr/local/bin
+    /usr/local/sbin
+    /usr/bin
+    /bin
+    /usr/sbin
+    /sbin
+    /System/Cryptexes/App/usr/bin
+    /var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin
+    /var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin
+    /var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin
 )
 export PATH="${(j|:|)__path}"
 unset __path
