@@ -47,7 +47,7 @@ __wifi() {
 
 # Displays a visual representation of the current battery level
 __battery() {
-    local bar="" level=1 alt="□□□□ ---%" col="242" ok=false percent=0
+    local bar="" level=1 alt="⌁ □□□□ ---%" col="242" ok=false percent=0
     case "$(uname 2>/dev/null)" in
         Darwin*)
             ok=true
@@ -79,7 +79,7 @@ __battery() {
             bar+="□"
         fi
     done
-    echo "%F{${col}}${bar} ${percent}%%%f"
+    echo "%F{${col}}⌁ ${bar} ${percent}%%%f"
 }
 
 # Displays the name of the active Python virtual environment (if any)
