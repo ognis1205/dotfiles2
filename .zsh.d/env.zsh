@@ -2,11 +2,6 @@
 # Prompt setup
 # ────────────────────────────────
 
-# Prints a color-formatted string to stdout without a newline
-__cecho() {
-    print -Pn "%F{${1}}${2}%f"
-}
-
 # Displays the power adapter status
 __power() {
     local sym="⏻" alt="x⏻" col="242" ok=false
@@ -21,7 +16,7 @@ __power() {
             ;;
     esac
     ${ok} || { col="red"; sym="${alt}"; }
-    __cecho "${col}" "${sym}"
+    echo "%F{${col}}${sym}%f"
 }
 
 # Displays Wi-Fi connection status
@@ -42,12 +37,12 @@ __wifi() {
             ;;
     esac
     ${ok} || { col="red"; sym="${alt}"; }
-    __cecho "${col}" "${sym}"
+    echo "%F{${col}}${sym}%f"
 }
 
 # Displays a visual representation of the current battery level
 __battery() {
-    local bar="" level=1 alt="⌁ □□□□ ---%" col="242" ok=false percent=0
+    local sym="⌁" level=1 bar="" percent=0 alt="⌁ □□□□ ---%" col="242" ok=false
     case "$(uname 2>/dev/null)" in
         Darwin*)
             ok=true
@@ -59,7 +54,7 @@ __battery() {
             ;;
     esac
     if ! $ok || [[ -z "$percent" ]]; then
-        __cecho "red" "${alt}"
+	echo "%F{red}${alt}%f"
         return
     fi
     if (( percent > 50 )); then
@@ -79,14 +74,14 @@ __battery() {
             bar+="□"
         fi
     done
-    echo "%F{${col}}⌁ ${bar} ${percent}%%%f"
+    echo "%F{${col}}${sym} ${bar} ${percent}%%%f"
 }
 
 # Displays the name of the active Python virtual environment (if any)
 __venv() {
     if [[ -n "${VIRTUAL_ENV}" ]]; then
         local name="($(basename "${VIRTUAL_ENV}"))"
-        __cecho "cyan" " ${name}"
+	echo "%F{cyan} ${name}%f"
     fi
 }
 
