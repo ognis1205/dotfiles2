@@ -79,9 +79,10 @@ __battery() {
 
 # Displays the name of the active Python virtual environment (if any)
 __venv() {
+    local sym="⎇" alt="x⎇"
     if [[ -n "${VIRTUAL_ENV}" ]]; then
         local name="($(basename "${VIRTUAL_ENV}"))"
-	echo "%F{cyan} ${name}%f"
+	echo "%F{cyan} ${sym} ${name}%f"
     fi
 }
 
