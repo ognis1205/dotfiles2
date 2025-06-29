@@ -107,7 +107,6 @@ else
     autoload -U colors && colors
     autoload -Uz vcs_info
     autoload -Uz add-zsh-hook
-#    PROMPT="[$(__power) $(__wifi) $(__battery) $(__venv) %n@%m] %~"$'\n'"%(#.#.$) "
     zstyle ':vcs_info:*' formats '%F{green}(%s)-[%b]%f'
     zstyle ':vcs_info:*' actionformats '%F{red}(%s)-[%b|%a]%f'
     add-zsh-hook precmd __render_prompt
