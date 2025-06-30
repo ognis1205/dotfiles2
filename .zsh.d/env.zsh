@@ -79,7 +79,7 @@ __battery() {
 
 # Displays the name of the active Python virtual environment (if any)
 __venv() {
-    local sym="⧉" alt="x⧉" col="242" name=""
+    local sym="⧉" alt="x⧉" col="242" name="-"
     if [[ -n "${VIRTUAL_ENV}" ]]; then
         name="$(basename "${VIRTUAL_ENV}")" && col="cyan"
     fi
@@ -88,7 +88,7 @@ __venv() {
 
 # Renders the primary shell prompt (PS1)
 __render_prompt() {
-    PROMPT="[$(__battery) $(__power) $(__wifi) $(__venv) %n@%m] %~"$'\n'"%(#.#.$) "
+    PROMPT="[ $(__power) $(__wifi) $(__battery) %F{242}⋮%f $(__venv) %F{242}⋮%f %n@%m ] %~"$'\n'"%(#.#.$) "
 }
 
 # Renders the right-hand side prompt (RPROMPT)
