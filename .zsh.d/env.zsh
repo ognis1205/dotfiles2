@@ -2,8 +2,13 @@
 # Prompt setup
 # ────────────────────────────────
 
+# Displays the current time in HH:MM format
+__render_timestamp() {
+    echo "%F{95}%D{%H:%M}%f"
+}
+
 # Displays the power adapter status
-__power() {
+__render_power() {
     local sym="⏻" alt="x⏻" col="242" ok=false
     case "$(uname 2>/dev/null)" in
         Darwin*)
@@ -20,7 +25,7 @@ __power() {
 }
 
 # Displays Wi-Fi connection status
-__wifi() {
+__render_wifi() {
     local sym="⇆" alt="x⇆" col="242" ok=false
     case "$(uname 2>/dev/null)" in
         Darwin*)
@@ -41,7 +46,7 @@ __wifi() {
 }
 
 # Displays a visual representation of the current battery level
-__battery() {
+__render_battery() {
     local sym="⌁" level=1 bar="" percent=0 alt="⌁ □□□□ ---%" col="242" ok=false
     case "$(uname 2>/dev/null)" in
         Darwin*)
@@ -78,7 +83,7 @@ __battery() {
 }
 
 # Displays the name of the active Python virtual environment (if any)
-__venv() {
+__render_venv() {
     local sym="⧉" alt="x⧉" col="242" name="-"
     if [[ -n "${VIRTUAL_ENV}" ]]; then
         name="$(basename "${VIRTUAL_ENV}")" && col="cyan"
@@ -86,9 +91,24 @@ __venv() {
     echo "%F{${col}}${sym} ${name}%f"
 }
 
+# Displays the current user and host
+__render_user() {
+    echo "%F{95}%n@%m%f"
+}
+
+# Displays the current user and host
+__render_path() {
+    echo "%~"
+}
+
+# Displays a subtle vertical bar
+__render_vbar() {
+    echo "%F{242}⋮%f"
+}
+
 # Renders the primary shell prompt (PS1)
 __render_prompt() {
-    PROMPT="[ $(__power) $(__wifi) $(__battery) %F{242}⋮%f $(__venv) %F{242}⋮%f %n@%m ] %~"$'\n'"%(#.#.$) "
+    PROMPT="[ $(__render_timestamp) $(__render_vbar) $(__render_power) $(__render_wifi) $(__render_battery) $(__render_vbar) $(__render_venv) $(__render_vbar) $(__render_user) ] $(__render_path)"$'\n'"%(#.#.$) "
 }
 
 # Renders the right-hand side prompt (RPROMPT)
