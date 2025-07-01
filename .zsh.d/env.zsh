@@ -117,6 +117,11 @@ __render_rprompt() {
     RPROMPT="${vcs_info_msg_0_}"
 }
 
+# Inserts a blank line before each prompt to improve readability
+__insert_blank_line() {
+    [[ -t 1 ]] && echo
+}
+
 # Use 'pure' prompt if available, otherwise fallback to basic VCS-aware prompt
 if [ -d "${HOME}/.zsh/pure" ] ; then
     fpath+="${HOME}/.zsh/pure"
@@ -129,8 +134,10 @@ else
     autoload -Uz add-zsh-hook
     zstyle ':vcs_info:*' formats '%F{green}(%s)-[%b]%f'
     zstyle ':vcs_info:*' actionformats '%F{red}(%s)-[%b|%a]%f'
+    add-zsh-hook precmd __insert_blank_line
     add-zsh-hook precmd __render_prompt
     add-zsh-hook precmd __render_rprompt
+    add-zsh-hook preexec __insert_blank_line
 fi
 
 # ────────────────────────────────
