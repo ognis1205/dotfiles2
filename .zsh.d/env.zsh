@@ -9,7 +9,7 @@ __render_timestamp() {
 
 # Renders the elapsed time since the last recorded timer as ⧖ HH:MM:SS
 __render_duration() {
-  local sym="⧖" alt="⧖ --:--:--" col="242"
+  local sym="⧗" alt="⧖ --:--:--" col="242"
   [[ -z $__TIMER_RESULT ]] && {
     echo "%F{${col}}${alt}%f"
     return
@@ -19,9 +19,9 @@ __render_duration() {
   local m=$(( (t % 3600) / 60 ))
   local s=$(( t % 60 ))
   local duration=$(printf "%02d:%02d:%02d" $h $m $s)
-  col="green"
-  (( t >= 3 ))  && col="yellow"
-  (( t >= 10 )) && col="red"
+  col="108"
+  (( t >= 30 ))  && col="143"
+  (( t >= 60 )) && col="131"
   echo "%F{${col}}${sym} ${duration}%f"
 }
 
@@ -142,7 +142,20 @@ __stop_timer() {
 
 # Renders the primary shell prompt (PS1)
 __render_prompt() {
-    PROMPT="$(__render_timestamp) $(__render_vbar) $(__render_power) $(__render_wifi) $(__render_battery) $(__render_vbar) $(__render_duration) $(__render_venv) $(__render_vbar) $(__render_user) $(__render_vbar) $(__render_path)"$'\n'"%(#.#.$) "
+    PROMPT=""
+    PROMPT+="$(__render_timestamp) "
+    PROMPT+="$(__render_vbar) "
+    PROMPT+="$(__render_power) "
+    PROMPT+="$(__render_wifi) "
+    PROMPT+="$(__render_battery) "
+    PROMPT+="$(__render_vbar) "
+    PROMPT+="$(__render_duration) "
+    PROMPT+="$(__render_venv) "
+    PROMPT+="$(__render_vbar) "
+    PROMPT+="$(__render_user) "
+    PROMPT+="$(__render_vbar) "
+    PROMPT+="$(__render_path)"
+    PROMPT+=$'\n'"%(#.#.$) "
 }
 
 # Renders the right-hand side prompt (RPROMPT)
