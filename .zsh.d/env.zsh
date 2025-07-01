@@ -7,6 +7,24 @@ __render_timestamp() {
     echo "%F{242}%D{%H:%M}%f"
 }
 
+# Renders the elapsed time since the last recorded timer as ⧖ HH:MM:SS
+__render_duration() {
+  local sym="⧖" alt="⧖ --:--:--" col="242"
+  [[ -z $__TIMER_RESULT ]] && {
+    echo "%F{${col}}${alt}%f"
+    return
+  }
+  local t=${__TIMER_RESULT}
+  local h=$(( t / 3600 ))
+  local m=$(( (t % 3600) / 60 ))
+  local s=$(( t % 60 ))
+  local duration=$(printf "%02d:%02d:%02d" $h $m $s)
+  col="green"
+  (( t >= 3 ))  && col="yellow"
+  (( t >= 10 )) && col="red"
+  echo "%F{${col}}${sym} ${duration}%f"
+}
+
 # Displays the power adapter status
 __render_power() {
     local sym="⏻" alt="x⏻" col="242" ok=false
@@ -106,20 +124,31 @@ __render_vbar() {
     echo "%F{242}⋮%f"
 }
 
+# Starts a timer by storing the current EPOCHREALTIME
+__start_timer() {
+    __TIMER_START=${EPOCHREALTIME}
+}
+
+# Stops the timer and computes elapsed time in seconds
+__stop_timer() {
+    local now=${EPOCHREALTIME}
+  if [[ -n $__TIMER_START ]]; then
+    __TIMER_RESULT=$(( now - __TIMER_START ))
+    unset __TIMER_START
+  else
+    unset __TIMER_RESULT
+  fi
+}
+
 # Renders the primary shell prompt (PS1)
 __render_prompt() {
-    PROMPT="$(__render_timestamp) $(__render_vbar) $(__render_power) $(__render_wifi) $(__render_battery) $(__render_vbar) $(__render_venv) $(__render_vbar) $(__render_user) $(__render_vbar) $(__render_path)"$'\n'"%(#.#.$) "
+    PROMPT="$(__render_timestamp) $(__render_vbar) $(__render_power) $(__render_wifi) $(__render_battery) $(__render_vbar) $(__render_duration) $(__render_venv) $(__render_vbar) $(__render_user) $(__render_vbar) $(__render_path)"$'\n'"%(#.#.$) "
 }
 
 # Renders the right-hand side prompt (RPROMPT)
 __render_rprompt() {
     LANG=en_US.UTF-8 vcs_info
     RPROMPT="${vcs_info_msg_0_}"
-}
-
-# Inserts a blank line before each prompt to improve readability
-__insert_blank_line() {
-    [[ -t 1 ]] && echo
 }
 
 # Use 'pure' prompt if available, otherwise fallback to basic VCS-aware prompt
@@ -134,10 +163,10 @@ else
     autoload -Uz add-zsh-hook
     zstyle ':vcs_info:*' formats '%F{green}(%s)-[%b]%f'
     zstyle ':vcs_info:*' actionformats '%F{red}(%s)-[%b|%a]%f'
-    add-zsh-hook precmd __insert_blank_line
+    add-zsh-hook preexec __start_timer
+    add-zsh-hook precmd __stop_timer
     add-zsh-hook precmd __render_prompt
     add-zsh-hook precmd __render_rprompt
-    add-zsh-hook preexec __insert_blank_line
 fi
 
 # ────────────────────────────────

@@ -29,7 +29,7 @@ alias .3='cd ../../../'          # Up 3 level
 alias .4='cd ../../../../'       # Up 4 level
 alias .5='cd ../../../../../'    # Up 5 level
 alias .6='cd ../../../../../../' # Up 6 level
-alias ~="cd ~"                   # Home shortcut
+alias ~='cd ${HOME}'             # Home shortcut
 
 # ────────────────────────────────
 # Listing
@@ -62,8 +62,8 @@ alias cic='set completion-ignore-case On' # Case-insensitive tab-completion
 # Mac-specific
 # ────────────────────────────────
 
-alias f='open -a Finder ./'      # Open current dir in Finder
-alias dt='tee ~/Desktop/tee.txt' # Write output to Desktop
+alias f='open -a Finder ./'            # Open current dir in Finder
+alias dt='tee ${HOME}/Desktop/tee.txt' # Write output to Desktop
 
 # ────────────────────────────────
 # Global aliases (for piping)

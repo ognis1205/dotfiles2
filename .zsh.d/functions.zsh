@@ -7,7 +7,7 @@ cd() {
 # Creates a directory and then changes into it
 mcd() {
     if [ -z "${1}" ]; then
-        echo "Usage: mcd <directory>"
+        echo "usage: mcd <directory>"
         return 1
     fi
     mkdir -p "${1}" && cd "${1}"
@@ -16,10 +16,10 @@ mcd() {
 # Moves files to macOS Trash
 trash() {
     if [ ${#} -eq 0 ]; then
-        echo "Usage: trash <file(s)>"
+        echo "usage: trash <file(s)>"
         return 1
     fi
-    command mv "${@}" ~/.Trash
+    command mv "${@}" "${HOME}/.Trash"
 }
 
 # Opens files in QuickLook preview (macOS only)
@@ -29,7 +29,7 @@ ql() {
 
 # Retrieves and prints the public IP address
 ip() {
-    curl -fsSL http://checkip.amazonaws.com || echo "Failed to get IP"
+    curl -fsSL http://checkip.amazonaws.com || echo "failed to get IP"
 }
 
 # Helper to manage tmux sessions
@@ -37,7 +37,7 @@ ip() {
 #   tx ls          # list sessions
 #   tx <session>   # attach to session or create if missing
 tx() {
-    session="${1}"
+    local session="${1}"
     if [ "${session}" = "ls" ]; then
         tmux ls
         return
@@ -69,7 +69,7 @@ elisp() {
 # Evaluates command once and caches output to a file for faster sourcing later
 # Usage: cached_eval "<command>" "<cache_filename>"
 cached_eval() {
-    cache="/tmp/${2}"
+    local cache="/tmp/${2}"
     if [[ ! -e "${cache}" ]]; then
         eval "${1}" > "${cache}"
         zcompile "${cache}"
