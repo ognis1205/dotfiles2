@@ -4,7 +4,7 @@
 
 # Displays the current time in HH:MM format
 __render_timestamp() {
-    echo "%F{95}%D{%H:%M}%f"
+    echo "%F{242}%D{%H:%M}%f"
 }
 
 # Displays the power adapter status
@@ -93,12 +93,12 @@ __render_venv() {
 
 # Displays the current user and host
 __render_user() {
-    echo "%F{95}%n@%m%f"
+    echo "%F{242}%n@%m%f"
 }
 
 # Displays the current user and host
 __render_path() {
-    echo "%~"
+    echo "%F{242}%~%f"
 }
 
 # Displays a subtle vertical bar
@@ -108,7 +108,7 @@ __render_vbar() {
 
 # Renders the primary shell prompt (PS1)
 __render_prompt() {
-    PROMPT="[ $(__render_timestamp) $(__render_vbar) $(__render_power) $(__render_wifi) $(__render_battery) $(__render_vbar) $(__render_venv) $(__render_vbar) $(__render_user) ] $(__render_path)"$'\n'"%(#.#.$) "
+    PROMPT="$(__render_timestamp) $(__render_vbar) $(__render_power) $(__render_wifi) $(__render_battery) $(__render_vbar) $(__render_venv) $(__render_vbar) $(__render_user) $(__render_vbar) $(__render_path)"$'\n'"%(#.#.$) "
 }
 
 # Renders the right-hand side prompt (RPROMPT)
