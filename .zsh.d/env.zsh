@@ -19,9 +19,9 @@ __render_duration() {
   local m=$(( (t % 3600) / 60 ))
   local s=$(( t % 60 ))
   local duration=$(printf "%02d:%02d:%02d" $h $m $s)
-  col="108"
-  (( t >= 30 ))  && col="143"
-  (( t >= 60 )) && col="131"
+  col="green"
+  (( t >= 30 ))  && col="yellow"
+  (( t >= 60 )) && col="red"
   echo "%F{${col}}${sym} ${duration}%f"
 }
 
