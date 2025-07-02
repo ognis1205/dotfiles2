@@ -9,7 +9,7 @@ __render_timestamp() {
 
 # Renders the elapsed time since the last recorded timer as ⧖ HH:MM:SS
 __render_duration() {
-  local sym="⧗" alt="⧖ --:--:--" col="242"
+  local sym="⧖" alt="⧖ --:--:--" col="242"
   [[ -z $__TIMER_RESULT ]] && {
     echo "%F{${col}}${alt}%f"
     return
