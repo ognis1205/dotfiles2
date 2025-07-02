@@ -20,7 +20,7 @@ __render_duration() {
   local s=$(( t % 60 ))
   local duration=$(printf "%02d:%02d:%02d" $h $m $s)
   col="green"
-  (( t >= 30 ))  && col="yellow"
+  (( t >= 30 )) && col="yellow"
   (( t >= 60 )) && col="red"
   echo "%F{${col}}${sym} ${duration}%f"
 }
@@ -80,13 +80,9 @@ __render_battery() {
 	echo "%F{red}${alt}%f"
         return
     fi
-    if (( percent > 50 )); then
-        col="green"
-    elif (( percent > 25 )); then
-        col="yellow"
-    else
-        col="red"
-    fi
+    (( percent > 50 )) && col="green"
+    (( percent > 25 && percent <= 50 )) && col="yellow"
+    (( percent <= 25 )) && col="red"
     (( percent > 75 )) && level=4
     (( percent > 50 && percent <= 75 )) && level=3
     (( percent > 25 && percent <= 50 )) && level=2
@@ -132,12 +128,12 @@ __start_timer() {
 # Stops the timer and computes elapsed time in seconds
 __stop_timer() {
     local now=${EPOCHREALTIME}
-  if [[ -n $__TIMER_START ]]; then
-    __TIMER_RESULT=$(( now - __TIMER_START ))
-    unset __TIMER_START
-  else
-    unset __TIMER_RESULT
-  fi
+    if [[ -n $__TIMER_START ]]; then
+	__TIMER_RESULT=$(( now - __TIMER_START ))
+	unset __TIMER_START
+    else
+	unset __TIMER_RESULT
+    fi
 }
 
 # Renders the primary shell prompt (PS1)
