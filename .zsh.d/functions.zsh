@@ -15,7 +15,7 @@ mcd() {
 
 # Moves files to macOS Trash
 trash() {
-    if [ ${#} -eq 0 ]; then
+    if [ "${#}" -eq 0 ]; then
         echo "usage: trash <file(s)>"
         return 1
     fi
@@ -24,8 +24,8 @@ trash() {
 
 # Extracts or mounts archive files based on their file extension.
 xf() {
-    if [ -f $1 ]; then
-        case $1 in
+    if [ -f "${1}" ]; then
+        case "${1}" in
             *.tar.bz2) tar -jxvf "${1}"                    ;;
             *.tar.gz)  tar -zxvf "${1}"                    ;;
             *.bz2)     bunzip2 "${1}"                      ;;
@@ -69,11 +69,11 @@ tx() {
     # If already inside tmux, switch client to target session
     if [ -n "${TMUX}" ]; then
         tmux switch-client -t "${session}"
-        return ${?}
+        return "${?}"
     fi
     # Check if session exists
     tmux ls | grep -q "^${session}:"
-    if [ ${?} -eq 0 ]; then
+    if [ "${?}" -eq 0 ]; then
         tmux attach -t "${session}"
     else
         tmux new -s "${session}"
