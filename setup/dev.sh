@@ -30,6 +30,13 @@ install() {
 	info "protoc has not been installed. Start installing it here...\n"
 	brew install protobuf
     fi
+
+    if command -v taplo 1>/dev/null 2>&1 ; then
+	info "taplo is already installed...\n"
+    else
+	info "taplo has not been installed. Start installing it here...\n"
+	brew install taplo || cargo install taplo-cli --locked
+    fi
 }
 
 if_yes_then\
