@@ -4,10 +4,10 @@
 
 install() {
     if command -v brew 1>/dev/null 2>&1 ; then
-	info "Homebrew is already installed...\n"
+        info "Homebrew is already installed...\n"
     else
-	info "Homebrew has not been installed. Start installing it here...\n"
-	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        info "Homebrew has not been installed. Start installing it here...\n"
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
 
     info "Ensuring you have the latest Homebrew...\n"
