@@ -1,0 +1,5 @@
+# Use x86_64 architecture (most actions expect this).
+--container-architecture=linux/amd64
+
+# Enable action offline mode.
+--action-offline-mode
