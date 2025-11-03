@@ -44,6 +44,13 @@ install() {
 	info "taplo has not been installed. Start installing it here...\n"
 	brew install taplo || cargo install taplo-cli --locked
     fi
+
+    if command -v act 1>/dev/null 2>&1 ; then
+	info "act is already installed...\n"
+    else
+	info "act has not been installed. Start installing it here...\n"
+	brew install act
+    fi
 }
 
 if_yes_then\
