@@ -4,52 +4,52 @@
 
 install() {
     if command -v git 1>/dev/null 2>&1 ; then
-	info "git is already installed...\n"
+        info "git is already installed...\n"
     else
-	info "git has not been installed. Start installing it here...\n"
-	brew install git
+        info "git has not been installed. Start installing it here...\n"
+        brew install git
     fi
 
     if command -v just 1>/dev/null 2>&1 ; then
-	info "just is already installed...\n"
+        info "just is already installed...\n"
     else
-	info "just has not been installed. Start installing it here...\n"
-	brew install just
+        info "just has not been installed. Start installing it here...\n"
+        brew install just
     fi
 
     if command -v gh 1>/dev/null 2>&1 ; then
-	info "gh is already installed...\n"
+        info "gh is already installed...\n"
     else
-	info "gh has not been installed. Start installing it here...\n"
-	brew install gh
+        info "gh has not been installed. Start installing it here...\n"
+        brew install gh
     fi
 
     if command -v hatch 1>/dev/null 2>&1 ; then
-	info "hatch is already installed...\n"
+        info "hatch is already installed...\n"
     else
-	info "hatch has not been installed. Start installing it here...\n"
-	brew install hatch
+        info "hatch has not been installed. Start installing it here...\n"
+        brew install hatch
     fi
 
     if command -v protoc 1>/dev/null 2>&1 ; then
-	info "protoc is already installed...\n"
+        info "protoc is already installed...\n"
     else
-	info "protoc has not been installed. Start installing it here...\n"
-	brew install protobuf
+        info "protoc has not been installed. Start installing it here...\n"
+        brew install protobuf
     fi
 
     if command -v taplo 1>/dev/null 2>&1 ; then
-	info "taplo is already installed...\n"
+        info "taplo is already installed...\n"
     else
-	info "taplo has not been installed. Start installing it here...\n"
-	brew install taplo || cargo install taplo-cli --locked
+        info "taplo has not been installed. Start installing it here...\n"
+        brew install taplo || cargo install taplo-cli --locked
     fi
 
     if command -v act 1>/dev/null 2>&1 ; then
-	info "act is already installed...\n"
+        info "act is already installed...\n"
     else
-	info "act has not been installed. Start installing it here...\n"
-	brew install act
+        info "act has not been installed. Start installing it here...\n"
+        brew install act
     fi
 }
 
