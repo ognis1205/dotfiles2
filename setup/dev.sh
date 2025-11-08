@@ -3,25 +3,11 @@
 . "$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)/include.sh"
 
 install() {
-    if command -v git 1>/dev/null 2>&1 ; then
-        info "git is already installed...\n"
-    else
-        info "git has not been installed. Start installing it here...\n"
-        brew install git
-    fi
-
     if command -v just 1>/dev/null 2>&1 ; then
         info "just is already installed...\n"
     else
         info "just has not been installed. Start installing it here...\n"
         brew install just
-    fi
-
-    if command -v gh 1>/dev/null 2>&1 ; then
-        info "gh is already installed...\n"
-    else
-        info "gh has not been installed. Start installing it here...\n"
-        brew install gh
     fi
 
     if command -v hatch 1>/dev/null 2>&1 ; then
