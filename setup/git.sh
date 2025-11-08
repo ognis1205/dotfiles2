@@ -28,7 +28,7 @@ install() {
         info "commitizen is already installed...\n"
     else
         info "commitizen has not been installed. Start installing it here...\n"
-        npm install -g commitizen
+        brew install commitizen
     fi
 }
 
