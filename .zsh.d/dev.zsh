@@ -7,6 +7,9 @@ if [ -d "${HOME}/.asdf" ] ; then
     . "${HOME}/.asdf/asdf.sh"
 fi
 
+# Add global npm binaries (used by commitizen, eslint, etc.) to PATH
+export PATH="`npm prefix --location=global`/bin:$PATH"
+
 # Load Java plugin for asdf (sets JAVA_HOME)
 if [ -d "${HOME}/.asdf/plugins/java" ] ; then
     . "${HOME}/.asdf/plugins/java/set-java-home.zsh"
