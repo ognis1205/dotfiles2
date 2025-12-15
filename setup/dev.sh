@@ -35,7 +35,7 @@ install() {
         info "buf is already installed...\n"
     else
         info "buf has not been installed. Start installing it here...\n"
-	brew install bufbuild/buf/buf
+        brew install bufbuild/buf/buf
     fi
 }
 
