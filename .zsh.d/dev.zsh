@@ -3,13 +3,18 @@
 # ──────────────────────────────────────────────────────
 
 # Load asdf if installed
-if [ -d "${HOME}/.asdf" ] ; then
-    . "${HOME}/.asdf/asdf.sh"
+if [ -d "${ASDF_DATA_DIR:-$HOME/.asdf}" ] ; then
+    . "${ASDF_DATA_DIR:-$HOME/.asdf}/asdf.sh"
 fi
 
-# Load Java plugin for asdf (sets JAVA_HOME)
-if [ -d "${HOME}/.asdf/plugins/java" ] ; then
-    . "${HOME}/.asdf/plugins/java/set-java-home.zsh"
+# Load Java plugin for asdf (sets environment variables )
+if [ -d "${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/java" ] ; then
+    . "${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/java/set-java-home.zsh"
+fi
+
+# Load Golang plugin for asdf (sets environment variables)
+if [ -d "${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang" ] ; then
+    . "${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh"
 fi
 
 # Initialize conda (prefer hook; fallback to profile script or manual PATH)

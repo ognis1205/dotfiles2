@@ -37,6 +37,13 @@ install() {
         info "buf has not been installed. Start installing it here...\n"
         brew install bufbuild/buf/buf
     fi
+
+    if command -v protoc-gen-jsonschema 1>/dev/null 2>&1 ; then
+        info "protoc-gen-jsonschema is already installed...\n"
+    else
+        info "protoc-gen-jsonschema has not been installed. Start installing it here...\n"
+	go install github.com/chrusty/protoc-gen-jsonschema/cmd/protoc-gen-jsonschema@latest
+    fi
 }
 
 if_yes_then\
