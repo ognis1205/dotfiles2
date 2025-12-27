@@ -42,7 +42,7 @@ install() {
         info "protoc-gen-jsonschema is already installed...\n"
     else
         info "protoc-gen-jsonschema has not been installed. Start installing it here...\n"
-	go install github.com/chrusty/protoc-gen-jsonschema/cmd/protoc-gen-jsonschema@latest
+        go install github.com/chrusty/protoc-gen-jsonschema/cmd/protoc-gen-jsonschema@latest
     fi
 }
 
