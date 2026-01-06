@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-. "$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)/include.sh"
+"$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)/include.sh"
 
 setup() {
     info "Setting menu clock...\n"

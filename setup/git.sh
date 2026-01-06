@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-. "$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)/include.sh"
+"$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)/include.sh"
 
 install() {
     if command -v git 1>/dev/null 2>&1 ; then
