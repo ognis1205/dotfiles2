@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-"$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)/include.sh"
+source "$(dirname "${BASH_SOURCE[0]}")/include.sh"
 
 install() {
     if command -v wget 1>/dev/null 2>&1 ; then
@@ -50,6 +50,13 @@ install() {
     else
         info "act has not been installed. Start installing it here...\n"
         brew install act
+    fi
+
+    if command -v yq 1>/dev/null 2>&1 ; then
+        info "yq is already installed...\n"
+    else
+        info "yq has not been installed. Start installing it here...\n"
+        brew install yq
     fi
 }
 

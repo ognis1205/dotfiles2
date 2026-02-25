@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-"$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)/include.sh"
+source "$(dirname "${BASH_SOURCE[0]}")/include.sh"
 
 install() {
     if command -v just 1>/dev/null 2>&1 ; then
