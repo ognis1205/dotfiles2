@@ -33,9 +33,9 @@ unset __conda_setup
 # Add global npm binaries (used by commitizen, eslint, etc.) to PATH
 export PATH="`npm prefix --location=global`/bin:$PATH"
 
- # Start Nix daemon
-if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-     . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+ # Configure Nix
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix.sh' ]; then
+     . '/nix/var/nix/profiles/default/etc/profile.d/nix.sh'
 fi
 
 # ──────────────────────────────────────────────────────
