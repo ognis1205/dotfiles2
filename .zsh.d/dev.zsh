@@ -2,17 +2,17 @@
 # Environment setup
 # ──────────────────────────────────────────────────────
 
-# Load asdf if installed
+# Configure asdf environment setup if it exists
 if [ -d "${ASDF_DATA_DIR:-$HOME/.asdf}" ] ; then
     . "${ASDF_DATA_DIR:-$HOME/.asdf}/asdf.sh"
 fi
 
-# Load Java plugin for asdf (sets environment variables )
+# Load Java plugin for asdf (sets environment variables) if it exists
 if [ -d "${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/java" ] ; then
     . "${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/java/set-java-home.zsh"
 fi
 
-# Load Golang plugin for asdf (sets environment variables)
+# Load Golang plugin for asdf (sets environment variables) if it exists
 if [ -d "${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang" ] ; then
     . "${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh"
 fi
@@ -33,7 +33,14 @@ unset __conda_setup
 # Add global npm binaries (used by commitizen, eslint, etc.) to PATH
 export PATH="`npm prefix --location=global`/bin:$PATH"
 
- # Configure Nix
+# Configure pnpm environment setup (home directory) and add it to PATH if not already present
+export PNPM_HOME="/Users/shingo/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+
+# Configure Nix environment setup if it exists
 if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix.sh' ]; then
      . '/nix/var/nix/profiles/default/etc/profile.d/nix.sh'
 fi
