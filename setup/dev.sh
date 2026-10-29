@@ -44,6 +44,13 @@ install() {
         info "protoc-gen-jsonschema has not been installed. Start installing it here...\n"
         go install github.com/chrusty/protoc-gen-jsonschema/cmd/protoc-gen-jsonschema@latest
     fi
+
+    if command -v herdr 1>/dev/null 2>&1 ; then
+        info "herdr is already installed...\n"
+    else
+        info "herdr has not been installed. Start installing it here...\n"
+        brew install herdr
+    fi
 }
 
 if_yes_then\
